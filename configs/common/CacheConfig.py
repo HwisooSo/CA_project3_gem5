@@ -99,8 +99,17 @@ def config_cache(options, system):
         if options.caches:
             icache = icache_class(size=options.l1i_size,
                                   assoc=options.l1i_assoc)
+
+            #ca_proj_3
+            repl_policy = LRU
+            repl_policy_string = options.dcache_repl_policy
+            if repl_policy_string == "Random":
+                repl_policy = RandomRepl
+            elif repl_policy_string == "FIFO":
+                repl_policy = FIFO
             dcache = dcache_class(size=options.l1d_size,
-                                  assoc=options.l1d_assoc)
+                                  assoc=options.l1d_assoc,
+                                  tags=repl_policy())
 
             # If we have a walker cache specified, instantiate two
             # instances here

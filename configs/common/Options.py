@@ -111,6 +111,11 @@ def addNoISAOptions(parser):
     parser.add_option("--l3_assoc", type="int", default=16)
     parser.add_option("--cacheline_size", type="int", default=64)
 
+    #ca_proj_3
+    parser.add_option("--dcache-repl-policy", action="store", type="choice",
+                      choices=["LRU", "Random", "FIFO"], default="LRU",
+                      help="Dcache replacement policy")
+
     # Enable Ruby
     parser.add_option("--ruby", action="store_true")
 
